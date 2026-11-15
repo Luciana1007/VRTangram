@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f647cc0545697264a9878224faada6d5, type: 3}
   m_Name: MetaQuestFeature Android
   m_EditorClassIdentifier: Unity.XR.OpenXR.Features.MetaQuestSupport::UnityEngine.XR.OpenXR.Features.MetaQuestSupport.MetaQuestFeature
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Meta Quest Support
   version: 1.0.0
   featureIdInternal: com.unity.openxr.feature.metaquest
@@ -679,13 +679,13 @@ MonoBehaviour:
   - {fileID: 6176904468690396582}
   customLoaderName: 
   m_renderMode: 1
-  m_latencyOptimization: 0
+  m_latencyOptimization: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
     m_List: 00000000
   m_depthSubmissionMode: 0
   m_spacewarpMotionVectorTextureFormat: 0
-  m_optimizeBufferDiscards: 0
+  m_optimizeBufferDiscards: 1
   m_symmetricProjection: 0
   m_optimizeMultiviewRenderRegions: 0
   m_multiviewRenderRegionsOptimizationMode: 0
@@ -1189,9 +1189,9 @@ MonoBehaviour:
   - {fileID: 2924624947684795119}
   - {fileID: 6187225836434928196}
   - {fileID: 8552907238249700576}
-  - {fileID: -3816081030226784011}
-  - {fileID: -1560773296062987043}
-  - {fileID: -5830457099863002627}
+  - {fileID: 8915549860045766057}
+  - {fileID: 4544157993435851155}
+  - {fileID: -3112470840915839347}
   - {fileID: 2501818200547701875}
   - {fileID: -2278054155811567221}
   - {fileID: -5349547550543726474}
@@ -1199,8 +1199,8 @@ MonoBehaviour:
   - {fileID: 3102360943970512004}
   - {fileID: -8680308341255579476}
   - {fileID: -7599032904848052168}
-  - {fileID: -6470003077141214864}
-  - {fileID: -2245291545726029522}
+  - {fileID: 1414397164768919299}
+  - {fileID: 8346739484898001345}
   - {fileID: -4212356408991743295}
   - {fileID: -7177231358760156619}
   - {fileID: -5691230510418167391}
