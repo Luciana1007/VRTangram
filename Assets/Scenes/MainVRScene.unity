@@ -717,7 +717,7 @@ PrefabInstance:
     - target: {fileID: 5357994151009715217, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 56a32a9ed9f1b734fbe4fa885774a4c9, type: 2}
+      objectReference: {fileID: 2100000, guid: fc95a83fb54ee3d4f9132a0c54623b93, type: 2}
     - target: {fileID: 9210653307121883614, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: m_Name
       value: RefTriangGrande2
@@ -1849,7 +1849,7 @@ PrefabInstance:
     - target: {fileID: 5357994151009715217, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ec955ad2c0d3d434d9ccff45d395fc69, type: 2}
+      objectReference: {fileID: 2100000, guid: ca85852ddb381c34f88aa5763892b8b9, type: 2}
     - target: {fileID: 9210653307121883614, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: m_Name
       value: RefTriangGrande1
@@ -2947,7 +2947,7 @@ PrefabInstance:
     - target: {fileID: 5357994151009715217, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7d48ad1947c5092458d48d2107913bfd, type: 2}
+      objectReference: {fileID: 2100000, guid: ee42a87c4bad3614d9d6bf6192c546f6, type: 2}
     - target: {fileID: 9210653307121883614, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: m_Name
       value: RefTriangChiq1
@@ -5859,7 +5859,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7de240e7c5c52814299c852e172b7b4b, type: 2}
+  - {fileID: 2100000, guid: e9d6395992b70bb489bdfecc31bb8c2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7000,7 +7000,7 @@ PrefabInstance:
     - target: {fileID: 5357994151009715217, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 54250abdc9e64f64f9b03c4d85ba72b0, type: 2}
+      objectReference: {fileID: 2100000, guid: 7c82853e0d936724f96301286f60f365, type: 2}
     - target: {fileID: 9210653307121883614, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: m_Name
       value: RefTriangMed
@@ -9224,7 +9224,7 @@ PrefabInstance:
     - target: {fileID: 335284992128688288, guid: e29815fa491cc70419fc4078952368e8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: aca39660295b5614692464958bdd6e83, type: 2}
+      objectReference: {fileID: 2100000, guid: 40b11d1050fb66744a92aa6f216a7e3a, type: 2}
     - target: {fileID: 1512886917613268220, guid: e29815fa491cc70419fc4078952368e8, type: 3}
       propertyPath: m_Name
       value: RefCuboVioleta
@@ -9721,7 +9721,7 @@ PrefabInstance:
     - target: {fileID: 5357994151009715217, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3e95324193d7a7c44a2cd4f25a89b4e5, type: 2}
+      objectReference: {fileID: 2100000, guid: d31d4be663f40314094ba088c86e913d, type: 2}
     - target: {fileID: 9210653307121883614, guid: 3619a649ea259fa4ca073c62b1feec05, type: 3}
       propertyPath: m_Name
       value: RefTriangChiq2
