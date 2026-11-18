@@ -19,6 +19,7 @@ public class ValidadorPieza : MonoBehaviour
     public ControladorTangram controlador;
 
     private bool colocadaCorrectamente = false;
+    private bool validacionActiva = false;
 
     private Vector3 posicionInicial;
     private Quaternion rotacionInicial;
@@ -37,7 +38,8 @@ public class ValidadorPieza : MonoBehaviour
     
     void OnEnable()
     {
-        grabInteractable.selectExited.AddListener(AlSoltar);
+        if (grabInteractable != null)
+            grabInteractable.selectExited.AddListener(AlSoltar);
     }
 
      void OnDisable()
@@ -48,11 +50,22 @@ public class ValidadorPieza : MonoBehaviour
 
     private void AlSoltar(SelectExitEventArgs args)
     {
-        if (colocadaCorrectamente)
+        if (colocadaCorrectamente || !validacionActiva)
             return;
         
         ValidarPieza(); 
     }
+
+
+   public void ActivarValidacion()
+   {
+        validacionActiva = true;
+   }
+
+   public void DesactivarValidacion()
+   {
+        validacionActiva = false;
+   }
 
    public void ValidarPieza()
    {
@@ -81,12 +94,32 @@ public class ValidadorPieza : MonoBehaviour
 
         grabInteractable.enabled = false;
 
+        
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.ReproducirSonidoColocarPieza();
+        }
+
         controlador.RegistrarPiezaCorrecta();
+    }
+
+    public void HabilitarPieza()
+    {
+        if (colocadaCorrectamente)
+            return;
+        
+        if (rb != null)
+            rb.isKinematic = false;
+
+        if (grabInteractable != null)
+            grabInteractable.enabled = true; 
     }
 
     public void ReiniciarPieza()
     {
         colocadaCorrectamente = false;
+
+        validacionActiva = false;
 
         grabInteractable.enabled = true;
 
@@ -98,12 +131,27 @@ public class ValidadorPieza : MonoBehaviour
         }
 
         transform.SetPositionAndRotation(posicionInicial, rotacionInicial);
+
     }
 
     public void BloquearPieza()
     {
+
         if (grabInteractable != null)
+        {
+            if (grabInteractable.interactionManager != null)
+            {
+                for (int i = grabInteractable.interactorsSelecting.Count - 1; i >= 0; i--)
+                {
+                    var interactor = grabInteractable.interactorsSelecting[i];
+
+                    grabInteractable.interactionManager.SelectExit(interactor, grabInteractable);
+                }
+            }
+
             grabInteractable.enabled = false;
+
+        }    
         
         if (rb != null)
         {
@@ -111,5 +159,10 @@ public class ValidadorPieza : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             rb.isKinematic = true;
         }
+    }
+
+    public bool EstaColocada()
+    {
+        return colocadaCorrectamente;
     }
 }

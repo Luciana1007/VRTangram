@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MenuJuego : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MenuJuego : MonoBehaviour
     public TMP_Text textoCronometro;
     public TMP_Text textoBotonPausar;
     public TMP_Text textoResultado;
+    
 
     [Header("Controlador")]
     public ControladorTangram controladorTangram;
@@ -20,10 +22,25 @@ public class MenuJuego : MonoBehaviour
     [Header("Tiempo")]
     public float tiempoLimite = 180f;
     
+    [Header("Botones con sonido")]
+    public Button[] botonesConSonido;
+
     private float tiempoRestante;
     private bool cronometroActivo = false;
     private bool partidaFinalizada = false;
 
+    void Start()
+    {
+        controladorTangram.BloquearTodasLasPiezas();
+
+        panelCronometro.SetActive(false);
+
+        
+        if (AudioManager.Instance != null)
+        AudioManager.Instance.ReproducirMusica();
+        
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -49,7 +66,10 @@ public class MenuJuego : MonoBehaviour
         int minutos = Mathf.FloorToInt(tiempoRestante / 60);
         int segundos = Mathf.FloorToInt(tiempoRestante % 60);
 
-        textoCronometro.text = minutos.ToString("00") + ":" + segundos.ToString("00");
+        textoCronometro.text =
+            "Tiempo restante: " +
+            minutos.ToString("00") + ":" +
+            segundos.ToString("00");
     }
 
     public void EmpezarJuego()
@@ -57,17 +77,34 @@ public class MenuJuego : MonoBehaviour
         panelPrincipal.SetActive(false);
         panelInstrucciones.SetActive(false);
         panelResultado.SetActive(false);
+
         panelCronometro.SetActive(true);
 
-        partidaFinalizada = false;
-        tiempoRestante = tiempoLimite;
+        textoCronometro.gameObject.SetActive(true);
+        textoCronometro.text =
+            "Cuando se encuentren las 3 piezas escondidas, " +
+            "el cronómetro se activará.";
 
+        textoBotonPausar.gameObject.SetActive(false);
+
+        partidaFinalizada = false;
+        cronometroActivo = false;
+
+        
+
+    }
+
+    public void IniciarCronometro()
+    {
+        tiempoRestante = tiempoLimite;
         cronometroActivo = true;
 
-        ActualizarTextoTiempo();
-        textoBotonPausar.text = "PAUSAR";
+        panelCronometro.SetActive(true);
 
-        controladorTangram.ReiniciarTangram();
+        ActualizarTextoTiempo();
+
+        textoBotonPausar.gameObject.SetActive(true);
+        textoBotonPausar.text = "PAUSAR";
     }
 
     public void MostrarInstrucciones()
@@ -86,21 +123,32 @@ public class MenuJuego : MonoBehaviour
     {
         if (partidaFinalizada)
             return;
-        
+
         cronometroActivo = !cronometroActivo;
 
-        textoBotonPausar.text = cronometroActivo ? "Pausar" : "Continuar";
+        if (cronometroActivo)
+        {
+            controladorTangram.HabilitarPiezasNoColocadas();
+            textoBotonPausar.text = "PAUSAR";
+        }
+        else
+        {
+            controladorTangram.BloquearTodasLasPiezas();
+            textoBotonPausar.text = "CONTINUAR";
+        }
     }
 
     public void ReiniciarCronometro()
     {
         if (partidaFinalizada)
             return;
-        
+
         tiempoRestante = tiempoLimite;
         cronometroActivo = true;
 
         ActualizarTextoTiempo();
+
+        textoBotonPausar.gameObject.SetActive(true);
         textoBotonPausar.text = "PAUSAR";
 
         controladorTangram.ReiniciarTangram();
@@ -110,14 +158,20 @@ public class MenuJuego : MonoBehaviour
     {
         if (partidaFinalizada)
             return;
-        
+
         partidaFinalizada = true;
+        
         cronometroActivo = false;
 
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.ReproducirSonidoVictoria();
+
         panelCronometro.SetActive(false);
+        
         panelResultado.SetActive(true);
 
-        textoResultado.text = "¡FELICIDADES!\n¡Completaste el tangram!";
+        textoResultado.text =
+            "¡FELICIDADES!\n¡Completaste el tangram!";
 
         controladorTangram.BloquearTodasLasPiezas();
     }
@@ -126,14 +180,22 @@ public class MenuJuego : MonoBehaviour
     {
         if (partidaFinalizada)
             return;
-        
+
         partidaFinalizada = true;
+        
         cronometroActivo = false;
 
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.ReproducirSonidoDerrota();
+
         panelCronometro.SetActive(false);
+        
         panelResultado.SetActive(true);
 
-        textoResultado.text = "¡SE ACABÓ EL TIEMPO!\nIntentalo nuevamente.";
+        textoResultado.text =
+            "¡SE ACABÓ EL TIEMPO!\nIntentalo nuevamente.";
+
+        controladorTangram.BloquearTodasLasPiezas();
     }
 
     public void Reintentar()
@@ -145,6 +207,12 @@ public class MenuJuego : MonoBehaviour
         panelCronometro.SetActive(false);
         panelPrincipal.SetActive(true);
 
-        controladorTangram.ReiniciarTangram();
+        controladorTangram.BloquearTodasLasPiezas();
+    }
+
+    private void ReproducirSonidoBoton()
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.ReproducirSonidoBoton();
     }
 }
