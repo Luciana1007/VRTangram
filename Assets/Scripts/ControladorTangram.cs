@@ -140,7 +140,18 @@ public class ControladorTangram : MonoBehaviour
 
         foreach (ValidadorPieza pieza in piezas)
         {
-            pieza.ReiniciarPieza();
+            bool conservarPosicion = false;
+
+            for (int i = 0; i < piezasEscondidas.Length; i++)
+            {
+                if (pieza == piezasEscondidas[i] && piezasYaEncontradas[i])
+                {
+                    conservarPosicion = true;
+                    break;
+                }
+            }
+
+            pieza.ReiniciarPieza(conservarPosicion);
             pieza.ActivarValidacion();
         }
     }

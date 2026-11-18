@@ -115,13 +115,16 @@ public class ValidadorPieza : MonoBehaviour
             grabInteractable.enabled = true; 
     }
 
-    public void ReiniciarPieza()
+    public void ReiniciarPieza(bool conservarPosicion = false)
     {
-        colocadaCorrectamente = false;
+        Vector3 posicionActual = transform.position;
+        Quaternion rotacionActual = transform.rotation;
 
+        colocadaCorrectamente = false;
         validacionActiva = false;
 
-        grabInteractable.enabled = true;
+        if (grabInteractable != null)
+            grabInteractable.enabled = true;
 
         if (rb != null)
         {
@@ -130,7 +133,15 @@ public class ValidadorPieza : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
-        transform.SetPositionAndRotation(posicionInicial, rotacionInicial);
+        
+        if (conservarPosicion)
+        {
+            transform.SetPositionAndRotation(posicionActual, rotacionActual);
+        }
+        else
+        {
+            transform.SetPositionAndRotation(posicionInicial, rotacionInicial);
+        }
 
     }
 
